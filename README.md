@@ -1,26 +1,26 @@
 # MRCP
 [![Discord](https://img.shields.io/discord/937821572285206659?style=flat-square&label=Discord&logo=discord&logoColor=white&color=7289DA)](https://discord.com/servers/teknology-hub-937821572285206659)
 
-## Overview
+## Tổng quan
 
-Steam Manifest Request Code Provider (MRCP) is a lightweight bot that supplies Steam manifest request codes over a UDP socket using your Steam account
+Steam Manifest Request Code Provider (MRCP) là một bot nhẹ cung cấp mã yêu cầu manifest Steam qua một socket UDP sử dụng tài khoản Steam của bạn.
 
-## How to use
+## Cách sử dụng
 
-Download the binary for your OS in [releases](https://github.com/Nuclearistt/MRCP/releases) or build it manually (relevant for Linux since Native AOT adds dynamic dependencies on specific library versions), run it once with `--setup` argument to interactively input credentials, then you may run it without any arguments (e.g as as service), it'll listen on specified port for UDP requests
+Tải xuống tệp nhị phân cho hệ điều hành của bạn tại releases hoặc tự biên dịch (điều này liên quan đến Linux vì Native AOT thêm các phụ thuộc động vào các phiên bản thư viện cụ thể), chạy nó một lần với tham số --setup để nhập thông tin xác thực tương tác, sau đó bạn có thể chạy nó mà không cần bất kỳ tham số nào (ví dụ như một dịch vụ), nó sẽ lắng nghe trên cổng đã chỉ định cho các yêu cầu UDP.
 
-## Request and response data formats
+## Định dạng dữ liệu yêu cầu và phản hồi
 
-Request (16 bytes):
+Yêu cầu (16 byte):
 + uint AppId
 + uint DepotId
 + ulong ManifestId
 
-Response (8 bytes): ulong ManifestRequestCode
+Phản hồi (8 byte): ulong ManifestRequestCode
 
-## Why do you need it
+## Tại sao bạn cần nó
 
-While [TEK Steam Client](https://github.com/Nuclearistt/TEKSteamClient) can install arbitrary Steam apps, it is unable to get manifest request codes for apps not owned on the account it's logged on, and hence to download those apps. MCRP allows to proxy MCR requests to an account that owns the apps in question without leaking account credentials because it's running on a remote server
+Trong khi TEK Steam Client có thể cài đặt các ứng dụng Steam tùy ý, nó không thể lấy mã yêu cầu manifest cho các ứng dụng không được sở hữu trên tài khoản mà nó đang đăng nhập, và do đó không thể tải xuống những ứng dụng đó. MRCP cho phép proxy các yêu cầu MCR đến một tài khoản sở hữu các ứng dụng liên quan mà không làm rò rỉ thông tin xác thực tài khoản vì nó chạy trên một máy chủ từ xa.
 
 ## Client side code example
 
